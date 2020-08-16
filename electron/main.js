@@ -1,5 +1,10 @@
+// START of main.js --------------------------------
+// See https://www.electronjs.org/docs/tutorial/first-app#installing-electron
+
 const path = require('path')
 const { app, BrowserWindow } = require('electron')
+
+const port = require('../backend/api')
 
 function createWindow () {
     // Create the browser window.
@@ -11,8 +16,10 @@ function createWindow () {
         }
     })
 
-    // and load the index.html of the app.
+    // and load the index.html of the app (in the ./front dir).
     // win.loadFile('../front/index.html')
+    const apiUrl = `http://localhost:${port}`
+    console.log(apiUrl)
     win.loadURL(path.join('file://', __dirname, '../front/index.html'))
 
     // Open the DevTools.
@@ -43,3 +50,5 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// END of main.js --------------------------------
